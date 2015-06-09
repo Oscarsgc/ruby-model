@@ -43,7 +43,8 @@ class Group
 	private
 	def load_vertex(object, triangle, i, vertex)
 		index = triangle.vertices[vertex].position_index
-		v = object.vertices[index - 1]
+		v = object.vertices[index]
+		v = object.vertices[index - 1] if v.nil?
 		@vertex_list[3 * i] = v.x
 		@vertex_list[3 * i + 1] = v.y
 		@vertex_list[3 * i + 2] = v.z

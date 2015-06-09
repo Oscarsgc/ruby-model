@@ -14,6 +14,13 @@ FPS = 60.freeze
 DELAY_TIME = (1000.0 / FPS)
 DELAY_TIME.freeze
 
+def load_objects
+  # cargar modelo y preparar arreglos necesarios
+  puts "Loading dragon"
+  @model = Model.new('pitcher2')
+  puts "dragon loaded"
+end
+
 def initGL
   glEnable(GL_DEPTH_TEST)
   glClearColor(0.0, 0.0, 0.0, 0.0)
@@ -41,9 +48,6 @@ def initGL
   @image_width = png.width
 
   @image = png.to_rgba_stream.each_byte.to_a
-
-  # cargar modelo y preparar arreglos necesarios
-  @model = Model.new('pitcher2')
 end
 
 def draw
@@ -115,6 +119,7 @@ end
 @previous_time = 0
 @frame_count = 0
 #@spin2 = 0.0
+load_objects
 glutInit
 glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH)
 glutInitWindowSize(800,600)
