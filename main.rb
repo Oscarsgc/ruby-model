@@ -17,7 +17,7 @@ DELAY_TIME.freeze
 def load_objects
   # cargar modelo y preparar arreglos necesarios
   puts "Loading dragon"
-  @model = Model.new('pitcher2')
+  @model = Model.new('dragon')
   puts "dragon loaded"
 end
 
