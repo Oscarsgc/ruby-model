@@ -16,16 +16,16 @@ DELAY_TIME.freeze
 
 def load_objects
   # cargar modelo y preparar arreglos necesarios
-  puts "Loading dragon"
-  @model = Model.new('dragon')
-  puts "dragon loaded"
+  puts "Loading model"
+  @model = Model.new('Sonic', 'Sonic.mtl')
+  puts "model loaded"
 end
 
 def initGL
   glEnable(GL_DEPTH_TEST)
   glClearColor(0.0, 0.0, 0.0, 0.0)
-  glEnable(GL_LIGHTING)
-  glEnable(GL_LIGHT0)
+ # glEnable(GL_LIGHTING)
+ # glEnable(GL_LIGHT0)
   glEnable(GL_COLOR_MATERIAL)
   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
   glEnable(GL_NORMALIZE)
@@ -40,14 +40,6 @@ def initGL
   glLightfv(GL_LIGHT0, GL_DIFFUSE, color)
   glLightfv(GL_LIGHT0, GL_SPECULAR, color)
   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient)
-
-  #Load texture
-  png = ChunkyPNG::Image.from_file("ice.png")
-
-  @image_height = png.height
-  @image_width = png.width
-
-  @image = png.to_rgba_stream.each_byte.to_a
 end
 
 def draw
@@ -56,14 +48,10 @@ def draw
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
   glPushMatrix
-  #definicion del material
-  glColor3f(1.0, 1.0, 1.0);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, [1.0, 1.0, 1.0])
-  glMaterialf(GL_FRONT, GL_SHININESS, 100)
   
   # transformaciones del modelo
   glTranslate(0.0, -20.0, 0.0)
-  glRotatef(@spin, 0.0, 1.0, 0.0)
+  glRotatef(190, 0.0, 1.0, 0.0)
   glScalef(2.0, 2.0, 2.0)
   
   @model.draw
